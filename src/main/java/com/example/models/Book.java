@@ -4,9 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import com.example.models.Person;
 
-import java.time.temporal.ChronoUnit;
+
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 

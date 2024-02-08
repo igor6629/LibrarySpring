@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -28,6 +29,10 @@ public class PeopleService {
         return peopleRepository.findById(id).orElse(null);
     }
 
+    public Optional<Person> getPersonByName(String name) {
+        return peopleRepository.findPeopleByFio(name);
+    }
+
     @Transactional(readOnly = false)
     public void save(Person person) {
         peopleRepository.save(person);
@@ -46,9 +51,8 @@ public class PeopleService {
     public List<Book> getBooksTakenByPersonId(int id) {
         Person person = peopleRepository.findById(id).orElse(null);
 
-        for (Book book : person.getBooks()) {
+        for (Book book : person.getBooks())
             book.setExpired(book.isExpired());
-        }
 
         return person.getBooks();
     }

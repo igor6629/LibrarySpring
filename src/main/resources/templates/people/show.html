@@ -7,11 +7,9 @@
 <body>
     <p th:text="${person.getFio() + ', ' + person.getYear()}">Value</p>
 
-    <!-- IF CUSTOMER IS ANONYMOUS -->
     <div th:if="${#lists.isEmpty(books)}">
         <div>The person hasn't picked up any books yet</div>
     </div>
-    <!-- ELSE -->
     <div th:unless="${#lists.isEmpty(books)}">
         <hr>
         Books:
@@ -22,14 +20,16 @@
             </div>
             <div th:unless="${book.isExpired() == true}">
                 <div th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"></div>
-            <div>
+            </div>
         </div>
     </div>
 
     <hr>
     <a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>
-    <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
-        <input type="submit" value="Delete"/>
-    </form>
+    <p>
+        <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
+            <input type="submit" value="Delete"/>
+        </form>
+    </p>
 </body>
 </html>
